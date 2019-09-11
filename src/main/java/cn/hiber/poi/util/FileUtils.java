@@ -4,6 +4,9 @@ import static cn.hiber.poi.constants.HiberPoiConstants.*;
 
 import cn.hiber.poi.exception.ExcelFormatException;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -29,7 +32,7 @@ public class FileUtils {
 		try {
 			if(SUFFIX_XLS.equals(suffix)) {
 				wb = new HSSFWorkbook(inputStream);
-			} else if(SUFFIX_XLSX.equals(inputStream)) {
+			} else if(SUFFIX_XLSX.equals(suffix)) {
 				wb = new XSSFWorkbook(inputStream);
 			} else {
 				throw new ExcelFormatException(WRONG_EXCEL_FORMAT);
@@ -56,6 +59,31 @@ public class FileUtils {
 				System.err.println(e);
 			}
 			c = null;
+		}
+	}
+
+	/**
+	 * copy row
+	 *
+	 * @param sourceRow
+	 * @param targetRow
+	 */
+	public static void copyRow(Row sourceRow, Row targetRow) {
+		targetRow.setHeight(sourceRow.getHeight());
+		CellStyle rowStyle = targetRow.getRowStyle() ;
+		if(rowStyle != null) {
+			targetRow.setRowStyle(targetRow.getRowStyle());
+		}
+		int cols = sourceRow.getLastCellNum();
+		for(int j=0; j<cols; j++) {
+			Cell sourceCell = sourceRow.getCell(j) ;
+			if (sourceCell != null) {
+				Cell targetCell = targetRow.createCell(j) ;
+				CellStyle cellStyle = sourceCell.getCellStyle() ;
+				if(cellStyle != null) {
+					targetCell.setCellStyle(cellStyle);
+				}
+			}
 		}
 	}
 

@@ -7,6 +7,6 @@ import org.apache.poi.ss.usermodel.Row;
  */
 public interface RowRenderable<V> {
 
-    void renderRow(Row row, V vo, Object otherArgs);
+    void renderRow(Row row, V vo);
 
 }

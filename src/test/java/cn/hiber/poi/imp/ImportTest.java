@@ -18,7 +18,7 @@ public class ImportTest {
 
     @Test
     public void test1() throws IOException {
-        Sheet sheet = new XSSFWorkbook(getClass().getClassLoader().getResourceAsStream(FileUtils.addPath("import","import-test.xlsx"))).getSheetAt(0);
+        Sheet sheet = new XSSFWorkbook(getClass().getClassLoader().getResourceAsStream(FileUtils.addPath("import","export-template.xlsx"))).getSheetAt(0);
         RowParseAble<Person> rpa = (row) -> {
             Person p = new Person();
             int i = 0;
