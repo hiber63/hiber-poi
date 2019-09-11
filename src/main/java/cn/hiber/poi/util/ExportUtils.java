@@ -42,9 +42,7 @@ public class ExportUtils {
             fos = new FileOutputStream(url);
             wb.write(fos);
             fos.flush();
-        } catch (FileNotFoundException e) {
-            throw new TemplateNotFoundException(HiberPoiConstants.FILE_NOT_FOUND);
-        }finally {
+        } finally {
             FileUtils.close(fos,fis,wb);
         }
         return url;
