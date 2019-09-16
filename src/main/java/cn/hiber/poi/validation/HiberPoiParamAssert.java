@@ -34,13 +34,11 @@ public class HiberPoiParamAssert {
         }
     }
 
-
     public static void empty(CharSequence cs, String paramName) {
         if (cs != null && cs.length() > 0) {
             throw new HiberPoiParamException(paramName + " must be empty");
         }
     }
-
 
     public static void empty(Collection<?> collection, String paramName) {
         if (collection != null && !collection.isEmpty()) {
