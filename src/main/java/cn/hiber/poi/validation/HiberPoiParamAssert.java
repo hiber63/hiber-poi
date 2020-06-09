@@ -1,7 +1,6 @@
 package cn.hiber.poi.validation;
 
 import cn.hiber.poi.exception.HiberPoiParamException;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.Collection;
 
@@ -11,7 +10,7 @@ import java.util.Collection;
 public class HiberPoiParamAssert {
     
     public static void notBlank(String s, String paramName) {
-        if (StringUtils.isBlank(s)) {
+        if (s==null || s=="") {
             throw new HiberPoiParamException(paramName + " can't be blank");
         }
     }
